@@ -1,10 +1,10 @@
-let cart = []; // this is our empty array for the items
+let shoppingList = []; // this is our empty array for the items
 
 // Caching items from the HTML
 let itemInput = document.getElementById("itemInput");
 let addItemButton = document.getElementById("addItemButton");
 let removeItemButton = document.getElementById("removeItemButton");
-let cartList = document.getElementById("cart");
+let displayList = document.getElementById("shoppingList");
 
 let searchItem = document.getElementById("searchItem");
 let searchList = document.getElementById("search");
@@ -18,36 +18,36 @@ addItemButton.addEventListener("click", function () {
   if (item === "") {
     alert("Please enter an item.");
     return;
-  } else if (cart.includes(item)) {
+  } else if (shoppingList.includes(item)) {
     alert("Item is in the shopping list.");
     return;
   } else {
  
-  cart.push(item); // Add item to cart array
-  renderCart();
+  shoppingList.push(item); // Add item to cart array
+  rendershoppingList();
   itemInput.value = ""; // Clear the input field
 }});
  
 removeItemButton.addEventListener("click", function () {
 
     // if the cart is empty, send an alert
-    if (cart.length === 0){
+    if (shoppingList.length === 0){
         alert("Cart is empty. No items to remove");
         return;
     };
 
 
-  cart.pop(); // Remove last item from cart array
-  renderCart();
+  shoppingList.pop(); // Remove last item from cart array
+  rendershoppingList();
 });
 
  // This function recreates the "shopping cart" every time an item is added or removed
-function renderCart() {
-  cartList.innerHTML = ""; // Clear existing list
-  for (let i = 0; i < cart.length; i++) {
+function rendershoppingList() {
+  displayList.innerHTML = ""; // Clear existing list
+  for (let i = 0; i < shoppingList.length; i++) {
     let listItem = document.createElement("li");
-    listItem.innerText = cart[i];
-    cartList.appendChild(listItem);
+    listItem.innerText = shoppingList[i];
+    displayList.appendChild(listItem);
   }
 }
 
@@ -61,7 +61,7 @@ searchItemButton.addEventListener("click", function () {
       alert("Please enter the search item.");
     return;
   } else {
-    let result = cart.map((item) => item.toLowerCase()).indexOf(itemSearch.toLowerCase());
+    let result = shoppingList.map((item) => item.toLowerCase()).indexOf(itemSearch.toLowerCase());
       result.forEach(match => {
         let itemli = document.createElement("li");
         itemli.innerTest = match;
